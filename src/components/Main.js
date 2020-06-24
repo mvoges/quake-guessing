@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import Quake from "./Quake";
+import '../styles/app.css'
 
 export default function Main() {
     const [earthQuakes, setEarthQuakes] = useState([])
@@ -28,12 +30,12 @@ export default function Main() {
         <div>
             <button onClick={handleClick}>Update data</button>
             <h2>Today's US Earthquakes: {earthQuakes.length > 0 ? earthQuakes.length : " "}</h2>
-            {earthQuakes && earthQuakes.map(earthquake => {
-                const time = new Date(earthquake.properties.time)
-                return <div key={earthquake.properties.code}>
-                    <b>{earthquake.properties.place}:</b> {earthquake.properties.mag}, at {time.toLocaleTimeString()} ({time.toLocaleDateString()})
-                </div>
-            })}
+            <div className="wrapper">
+                {earthQuakes && earthQuakes.map(earthquake => {
+                    console.log(earthquake)
+                    return <Quake key={earthquake.id} data={earthquake}/>
+                })}
+            </div>
         </div>
     )
 }

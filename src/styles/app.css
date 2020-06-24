@@ -1,0 +1,19 @@
+.App {
+  text-align: center;
+}
+
+.wrapper {
+  width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 320px 320px 320px;
+  grid-gap: 10px;
+  background-color: #fff;
+  color: #444;
+}
+
+.card {
+  background-color: lightblue;
+  border-radius: 5px;
+  padding: 10px;
+}
