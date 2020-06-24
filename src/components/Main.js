@@ -18,20 +18,22 @@ export default function Main() {
 
         // jsonp callback, needs to be global
         window.eqfeed_callback = earthQuakes => {
-            console.log(earthQuakes['features'][0])
-            setEarthQuakes(earthQuakes['features'])
+            const isToday = date => (new Date().getDate() === new Date(date).getDate())
+            const todaysQuakes = earthQuakes['features'].filter(e => isToday(e.properties.time))
+            setEarthQuakes(todaysQuakes)
         }
     }
 
     return (
         <div>
             <button onClick={handleClick}>Update data</button>
-            <h2>Today's US Earthquakes:</h2>
-            {earthQuakes && earthQuakes.map(earthquake => (
-                <div key={earthquake.properties.code}>
-                    <b>{earthquake.properties.place}:</b> {earthquake.properties.mag}
+            <h2>Today's US Earthquakes: {earthQuakes.length > 0 ? earthQuakes.length : " "}</h2>
+            {earthQuakes && earthQuakes.map(earthquake => {
+                const time = new Date(earthquake.properties.time)
+                return <div key={earthquake.properties.code}>
+                    <b>{earthquake.properties.place}:</b> {earthquake.properties.mag}, at {time.toLocaleTimeString()} ({time.toLocaleDateString()})
                 </div>
-            ))}
+            })}
         </div>
     )
 }
