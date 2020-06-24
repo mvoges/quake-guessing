@@ -3,10 +3,10 @@
 }
 
 .wrapper {
-  width: 1000px;
+  width: 1090px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 320px 320px 320px;
+  grid-template-columns: 350px 350px 350px;
   grid-gap: 10px;
   background-color: #fff;
   color: #444;
@@ -45,4 +45,15 @@
   40%, 60% {
     transform: translate3d(10px, 0, 0);
   }
+}
+
+button {
+  margin: 4px;
+}
+
+.correct-button {
+  background-color: aquamarine;
+}
+.wrong-button {
+  background-color: lightpink;
 }
